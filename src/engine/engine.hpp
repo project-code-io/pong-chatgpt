@@ -1,8 +1,17 @@
+#pragma once
+
 #include <SDL2/SDL.h>
+#include "../primitives/size2d.hpp"
+
+class Ball;
+class Player;
+class Timer;
 
 class GameEngine {
 public:
-    GameEngine(const char* title, int xpos, int ypos, int width, int height, bool fullscreen);
+    GameEngine(
+      const char* title, int xpos, int ypos, int width, int height, bool fullscreen
+    );
     ~GameEngine();
 
     bool init();
@@ -12,15 +21,17 @@ private:
     bool running;
     SDL_Window* window;
     SDL_Renderer* renderer;
+    Player *player;
+    Ball *ball;
+    Timer *timer;
 
     const char *title;
     int xpos;
     int ypos;
-    int width;
-    int height; 
+    Size2D screenSize;
     bool fullscreen;
 
-    void update();
+    void update(Uint64 ticks);
     void render();
     void handleEvents();
 };

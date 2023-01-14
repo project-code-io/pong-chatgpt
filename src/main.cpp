@@ -4,8 +4,8 @@
 #include "engine/engine.hpp"
 
 int main(int argc, char* argv[]) {
-  const int screenWidth = 1200;
-  const int screenHeight = 800;
+  const int screenWidth = 1440;
+  const int screenHeight = 1080;
   const bool fullscreen = false;
 
   const int display = 1;
