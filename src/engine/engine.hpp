@@ -5,6 +5,7 @@
 
 class Ball;
 class Player;
+class Enemy;
 class Timer;
 
 class GameEngine {
@@ -23,6 +24,7 @@ private:
     SDL_Renderer* renderer;
     Player *player;
     Ball *ball;
+    Enemy *enemy;
     Timer *timer;
 
     const char *title;

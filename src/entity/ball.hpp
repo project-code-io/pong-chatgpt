@@ -11,6 +11,7 @@ public:
     Ball(SDL_Renderer* renderer, Size2D screen, float radius);
     void update(double delta);
     void render();
+    void reset();
 
     Vector2D getPosition() const;
     float getRadius() const;
@@ -23,4 +24,6 @@ private:
     Size2D screen;
     float radius;
     SDL_Renderer* renderer;
+
+    void addRandomSpeed();
 };

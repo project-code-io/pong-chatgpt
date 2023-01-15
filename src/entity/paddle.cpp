@@ -50,3 +50,15 @@ double Paddle::getRight() const {
 double Paddle::getLeft() const {
   return this->position.x;
 }
+
+double Paddle::getTop() const {
+  return this->position.y;
+}
+
+double Paddle::getBottom() const {
+  return this->position.y + this->size.height;
+}
+
+double Paddle::getMiddle() const {
+  return this->position.y + float(size.height) / 2;
+}

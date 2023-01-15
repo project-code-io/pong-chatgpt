@@ -6,9 +6,13 @@
 int main(int argc, char* argv[]) {
   const int screenWidth = 1440;
   const int screenHeight = 1080;
-  const bool fullscreen = false;
+  const bool fullscreen = true;
 
   const int display = 1;
+
+  
+
+  srand(time(0));
 
   GameEngine *game = new GameEngine(
     "pong", 

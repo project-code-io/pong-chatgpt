@@ -2,15 +2,17 @@
 #include "../entity/ball.hpp"
 #include "../entity/player.hpp"
 #include "../timer/timer.hpp"
+#include "../entity/enemy.hpp"
 
 GameEngine::GameEngine(
   const char* title, int xpos, int ypos, int width, int height, bool fullscreen
 ) : running(false), window(nullptr), renderer(nullptr), 
-  player(nullptr), ball(nullptr), timer(nullptr), title(title),
+  player(nullptr), ball(nullptr), enemy(nullptr), timer(nullptr), title(title),
   xpos(xpos), ypos(ypos), screenSize(width, height) {}
 
 GameEngine::~GameEngine() {
   delete player;
+  delete enemy;
   delete ball;
   delete timer;
 
@@ -46,6 +48,7 @@ bool GameEngine::init() {
 
   player = new Player(renderer, screenSize);
   ball = new Ball(renderer, screenSize, 15);
+  enemy = new Enemy(renderer, screenSize, ball, 600.0f);
   timer = new Timer();
 
   return true;
@@ -90,9 +93,14 @@ void GameEngine::update(Uint64 ticks) {
   // Do any updates here
   ball->update(delta);
   player->update(delta, SDL_GetKeyboardState(NULL));
+  enemy->update(delta);
 
   if (player->checkCollision(*ball)) {
     ball->bounceOffPaddle(player->getPaddle());
+  }
+
+  if (enemy->checkCollision(*ball)) {
+    ball->bounceOffPaddle(enemy->getPaddle());
   }
 }
 
@@ -104,6 +112,7 @@ void GameEngine::render() {
   // Draw any graphics here
   ball->render();
   player->render();
+  enemy->render();
 
   // Render the screen
   SDL_RenderPresent(renderer);

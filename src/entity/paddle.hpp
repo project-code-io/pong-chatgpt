@@ -16,6 +16,9 @@ public:
 
   double getRight() const;
   double getLeft() const;
+  double getTop() const;
+  double getBottom() const;
+  double getMiddle() const;
 
 private:
     Vector2D position;
